@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="LitePascal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="89" Y="18"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Common.pas"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="244"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\win\sysutils.pp"/>
+        <UnitName Value="SysUtils"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Scanner.pas"/>
+        <EditorIndex Value="4"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Parser.pas"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="CodeGen.pas"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Linker.pas"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="33" Y="131"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="28">
+      <Position>
+        <Filename Value="LitePascal.pas"/>
+        <Caret Line="41" Column="35" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="LitePascal.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Line="552" TopLine="535"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Line="549" TopLine="534"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Line="551" Column="5" TopLine="537"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Column="13"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Line="798" TopLine="769"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Line="55" TopLine="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Line="92" Column="3" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="LitePascal.pas"/>
+        <Caret Column="13"/>
+      </Position>
+      <Position>
+        <Filename Value="Scanner.pas"/>
+        <Caret Column="13"/>
+      </Position>
+      <Position>
+        <Filename Value="Scanner.pas"/>
+        <Caret Line="497" TopLine="468"/>
+      </Position>
+      <Position>
+        <Filename Value="LitePascal.pas"/>
+        <Caret Line="2" Column="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+        <Caret Line="3451" TopLine="3422"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+        <Caret Line="482" Column="64" TopLine="468"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+        <Caret TopLine="508"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+        <Caret Line="515" Column="2" TopLine="514"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+        <Caret Line="2155" Column="8" TopLine="2155"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+        <Caret Line="30"/>
+      </Position>
+      <Position>
+        <Filename Value="LitePascal.pas"/>
+        <Caret Line="2" Column="55"/>
+      </Position>
+      <Position>
+        <Filename Value="Linker.pas"/>
+        <Caret Column="6"/>
+      </Position>
+      <Position>
+        <Filename Value="Linker.pas"/>
+        <Caret Line="376" TopLine="347"/>
+      </Position>
+      <Position>
+        <Filename Value="Linker.pas"/>
+        <Caret TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="Linker.pas"/>
+        <Caret Line="377" Column="5" TopLine="348"/>
+      </Position>
+      <Position>
+        <Filename Value="Common.pas"/>
+        <Caret Line="103" Column="3" TopLine="830"/>
+      </Position>
+      <Position>
+        <Filename Value="Scanner.pas"/>
+        <Caret Line="527" TopLine="498"/>
+      </Position>
+      <Position>
+        <Filename Value="Parser.pas"/>
+        <Caret Line="3350" Column="5" TopLine="3321"/>
+      </Position>
+      <Position>
+        <Filename Value="CodeGen.pas"/>
+        <Caret TopLine="1897"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
