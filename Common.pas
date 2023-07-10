@@ -1,3 +1,5 @@
+// Based on XD Pascal (2020) original code by Vasiliy Tereshkov
+// Refactoring and extensions by Wanderlan
 {$I-,H-}
 unit Common;
 
