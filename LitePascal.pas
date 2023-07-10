@@ -1,3 +1,5 @@
+// Based on XD Pascal (2020) original code by Vasiliy Tereshkov
+// Refactoring and extensions by Wanderlan
 {$APPTYPE CONSOLE}
 {$I-,H-} // /(^(\r\n|\n|\r)$)|(^(\r\n|\n|\r))|^\s*$/gm
 program LitePascal;
