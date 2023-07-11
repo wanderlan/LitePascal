@@ -76,7 +76,7 @@ begin
   NumFolders := 2;
   Compile('system.pas');
   Compile(PasName + PasExt);
-  ExePath := PasFolder + PasName + '1.exe';
+  ExePath := PasFolder + PasName + '.exe';
   Link(ExePath);
   Notice('Complete. Code size: ' + IntToStr(GetCodeSize) + ' bytes. Data size: ' + IntToStr(InitializedGlobalDataSize + UninitializedGlobalDataSize) + ' bytes');
   // repeat
