@@ -8,6 +8,7 @@ interface
 const
   VERSION         = '2023.07.06';
   TARGET          = 'x86-win32';
+  POINTER_SIZE    = 4;
   NUMKEYWORDS     = 43;
   MAXSTRLENGTH    = 255;
   MAXSETELEMENTS  = 256;
@@ -509,7 +510,7 @@ begin
     BOOLEANTYPE: Result  := SizeOf(Boolean);
     REALTYPE: Result     := SizeOf(Double);
     SINGLETYPE: Result   := SizeOf(Single);
-    POINTERTYPE: Result  := SizeOf(Pointer);
+    POINTERTYPE: Result  := POINTER_SIZE;
     FILETYPE: Result     := SizeOf(TString) + SizeOf(Integer);  // Name + Handle
     SUBRANGETYPE: Result := TypeSize(Types[DataType].BaseType);
     ARRAYTYPE: begin
@@ -532,7 +533,7 @@ begin
       end;
     SETTYPE: Result        := MAXSETELEMENTS div 8;
     ENUMERATEDTYPE: Result := SizeOf(Byte);
-    PROCEDURALTYPE: Result := SizeOf(Pointer)
+    PROCEDURALTYPE: Result := POINTER_SIZE
     else Error('Illegal type')
   end;
 end;

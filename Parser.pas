@@ -362,14 +362,14 @@ begin
         DuplicateStackTop;
         GetFieldPtr(SrcField^.Offset);
         DerefPtr(POINTERTYPEINDEX);
-        GenerateInterfaceFieldAssignment(TempStorageAddr + (FieldIndex - 1) * SizeOf(Pointer), True, 0, CODERELOC);
+        GenerateInterfaceFieldAssignment(TempStorageAddr + (FieldIndex - 1) * POINTER_SIZE, True, 0, CODERELOC);
         DiscardStackTop(1);
       end
       else                                              // Concrete to interface
       begin
         MethodIndex := GetMethod(SrcType, DestField^.Name);
         CheckSignatures(Ident[MethodIndex].Signature, Types[DestField^.DataType].Signature, Ident[MethodIndex].Name, False);
-        GenerateInterfaceFieldAssignment(TempStorageAddr + (FieldIndex - 1) * SizeOf(Pointer), False, Ident[MethodIndex].Address, CODERELOC);
+        GenerateInterfaceFieldAssignment(TempStorageAddr + (FieldIndex - 1) * POINTER_SIZE, False, Ident[MethodIndex].Address, CODERELOC);
       end;
     end; // for  
     DiscardStackTop(1);                                       // Remove source pointer

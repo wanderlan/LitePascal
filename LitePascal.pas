@@ -50,7 +50,7 @@ begin
   if NumUnits >= 1 then
     Notice(ScannerFileName + ' (' + IntToStr(ScannerLine) + ') Error: ' + Msg)
   else
-    Notice('Error: ' + Msg);
+    Notice('Error: ' + Msg);  readln;
   Halt(1);
 end;
 
@@ -76,7 +76,7 @@ begin
   NumFolders := 2;
   Compile('system.pas');
   Compile(PasName + PasExt);
-  ExePath := PasFolder + PasName + '.exe';
+  ExePath := PasFolder + PasName + '1.exe';
   Link(ExePath);
   Notice('Complete. Code size: ' + IntToStr(GetCodeSize) + ' bytes. Data size: ' + IntToStr(InitializedGlobalDataSize + UninitializedGlobalDataSize) + ' bytes');
   // repeat
