@@ -1,6 +1,6 @@
 # LitePascal
-Self host Object Pascal compiler for ia32_windows target with &lt; 8000 sloc.  
-This code is based on XD-Pascal, but will be remanufactured.  
+Self host Object Pascal compiler for x86_windows (32 bit) target with &lt; 8000 sloc.  
+This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) (Vasiliy Tereshkov), but will be remanufactured.  
 
 ## Roadmap  
 ### Beta 1  
