@@ -24,7 +24,7 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - x64_windows target
 - PR with these contributions for XD-Pascal project
 ### Release 2
-- x64_linux and ia32_linux targets
+- x64_linux and x86_linux targets
 - PR with these contributions for XD-Pascal project
 ### Release 3
 - SIMD support
