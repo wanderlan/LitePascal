@@ -30,6 +30,6 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - SIMD support
 - Benchmarks game samples
 ### Release 4
-- ImGui support
+- ImGui, Nuklear or RmlUi support
 - SQLite support
-- Very simple IDE in LitePascal and ImGui
+- Very simple IDE in LitePascal and ImGui, Nuklear or RmlUi
