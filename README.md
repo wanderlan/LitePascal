@@ -29,7 +29,10 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 ### Release 3
 - SIMD support
 - Benchmarks game samples
+### Release 5
+- coroutines support (based on COMTAY)
+- LiteHTTP server (based on miniHttp(Rust) server)
 ### Release 4
-- ImGui, Nuklear or RmlUi support
+- HTMX, HyperScript and Hyperview support
 - SQLite support
-- Very simple IDE in LitePascal and ImGui, Nuklear or RmlUi
+- Very simple IDE (LiteIDE) in LitePascal and HTMX
