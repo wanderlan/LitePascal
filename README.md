@@ -30,9 +30,9 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - SIMD support
 - Benchmarks game samples
 ### Release 5
-- coroutines support (based on COMTAY)
+- coroutines support (based on goroutines)
 - LiteHTTP server (based on miniHttp(Rust) server)
 ### Release 4
 - HTMX, HyperScript and Hyperview support
 - SQLite support
-- Very simple IDE (LiteIDE) in LitePascal and HTMX
+- Very simple IDE (LiteIDE) in LitePascal, HTMX, HyperScript and CodeMirror
