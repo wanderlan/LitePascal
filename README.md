@@ -5,7 +5,6 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 ## Roadmap  
 ### Beta 1  
 - Lite OOP (Golang semantic) using Delphi/FPC syntax
-- Optional parenthesis for empty parameter lists
 - Revised String type implementation
 - Case statements with any type
 - PR with these contributions for XD-Pascal project
