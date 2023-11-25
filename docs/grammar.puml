@@ -60,7 +60,7 @@ IdentList = Ident, {",", Ident};
 Type = "(", Ident, {",", Ident}, ")" |
        "^", TypeIdent |
        ["packed"], "array", "[", Type, {",", Type}, "]", "of", Type |
-       ["packed"], "record", Fields, "end" |
+       ["packed"], "record", [?"(", TypeIdent, ")"?], Fields, "end" |
        ["packed"], "interface", [?"(", TypeIdent, {", TypeIdent}, ")"?], {?Prototypes?}, "end" |
        ["packed"], "set", "of", Type |
        ["packed"], "string", ["[", ConstExpression, "]"] |
