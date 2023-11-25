@@ -61,7 +61,7 @@ begin
   SetWriteProcs(nil, @NoticeProc, @WarningProc, @ErrorProc); // Eliminar
   Notice('Lite Pascal ' + VERSION + ' for ' + TARGET);
   if ParamCount < 1 then begin
-    Notice('Usage: cp <file.pas>');
+    Notice('Usage: LitePascal <file.pas>');
     Halt(1);
   end;
   CompilerPath := TString(ParamStr(0));
