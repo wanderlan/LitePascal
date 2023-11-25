@@ -36,4 +36,4 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - SQLite support
 - Very simple IDE (LiteIDE) in LitePascal, HTMX, HyperScript and CodeMirror
 
-![LitePascal](https://github.com/wanderlan/LitePascal/assets/7674584/3a8f6216-d1e0-4cfb-81ed-db86e5850c7c)
+![LitePascal](https://github.com/wanderlan/LitePascal/blob/main/docs/grammar.svg)
