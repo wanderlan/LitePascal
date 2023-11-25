@@ -40,7 +40,7 @@ Initializer = ConstExpression | StringLiteral |
 
 Types = "type", {Ident, "=", Type, ";"}-;
 
-Vars = "var", {IdentList, ":", Type, ["=", Initializer], ";"}-;
+Vars = ("var" | ?"threadvar"?), {IdentList, ":", Type, ["=", Initializer], ";"}-;
 
 ProcFuncs = ("procedure" | "function"), [?TypeIdent, "."?], Ident, [FormalParams], [":", TypeIdent], 
             [CallModifier], ";", [(Directive | Block), ";"];
@@ -61,7 +61,7 @@ Type = "(", Ident, {",", Ident}, ")" |
        "^", TypeIdent |
        ["packed"], "array", "[", Type, {",", Type}, "]", "of", Type |
        ["packed"], "record", [?"(", TypeIdent, ")"?], Fields, "end" |
-       ["packed"], "interface", [?"(", TypeIdent, {", TypeIdent}, ")"?], {?Prototypes?}, "end" |
+       "interface", [?"(", TypeIdent, {", TypeIdent}, ")"?], {?Prototypes?}, "end" |
        ["packed"], "set", "of", Type |
        ["packed"], "string", ["[", ConstExpression, "]"] |
        ["packed"], "file", ["of", Type] |
