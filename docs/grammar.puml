@@ -1,15 +1,5 @@
 @startebnf
-<style>
- element {
-   ebnf {
-     LineColor blue
-     Fontcolor blue
-     Backgroundcolor #FEFEFE/#B6D8EB
-     note {Backgroundcolor yellow}
-   }
- }
-</style>
-title Lite Pascal Grammar
+title Lite Pascal Grammar 
 (*Future implementations are in dashed blocks*)
 
 LitePascal = program | unit | ?Library?;
@@ -57,8 +47,7 @@ FormalParamList = ["const" | "var" | ?"out"?], IdentList, [":", ["array", "of"],
 
 IdentList = Ident, {",", Ident};
 
-Type = "(", Ident, {",", Ident}, ")" |
-       "^", TypeIdent |
+Type = "(", Ident, {",", Ident}, ")" | "^", TypeIdent |
        ["packed"], "array", "[", Type, {",", Type}, "]", "of", Type |
        ["packed"], "record", [?"(", TypeIdent, ")"?], Fields, "end" |
        "interface", [?"(", TypeIdent, {", TypeIdent}, ")"?], {?Prototypes?}, "end" |
@@ -112,7 +101,7 @@ CaseElement = CaseLabel, {",", CaseLabel}, ":", Statement;
 
 ConstExpression = Expression;
 
-Expression = SimpleExpression, [("="|"<>"|"<"|"<="|">"|">="|"in"), SimpleExpression];
+Expression = SimpleExpression, [("="|"<>"|"<"|"<="|">"|">="|"in"|?"is"?|?"as"?), SimpleExpression];
 
 SimpleExpression = ["+"|"-"], Term ,{("+"|"-"|"or"|"xor"), Term};
 
@@ -130,4 +119,14 @@ Number = "$", {HexDigit}- | {Digit}-, [".", {Digit}-], ["e", ["+" | "-"], {Digit
 CharLiteral = "'", (Character | "'", "'"), "'" | "#", Number | ?"^", Letter?;
 
 StringLiteral = "'", {Character | "'", "'"}, "'" | ?"#", Number? | ?"^", Letter? | StringLiteral;
+<style>
+ element {
+   ebnf {
+     LineColor blue
+     Fontcolor blue
+     Backgroundcolor #FEFEFE/#B6D8EB
+     note {Backgroundcolor yellow}
+   }
+ }
+</style>
 @endebnf
