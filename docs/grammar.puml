@@ -1,0 +1,133 @@
+@startebnf
+<style>
+ element {
+   ebnf {
+     LineColor blue
+     Fontcolor blue
+     Backgroundcolor #FEFEFE/#B6D8EB
+     note {Backgroundcolor yellow}
+   }
+ }
+</style>
+title Lite Pascal Grammar
+(*Future implementations are in dashed blocks*)
+
+LitePascal = program | unit | ?Library?;
+
+Program = ["program", Ident, ";"], [UsesClause], Block, ".";
+                
+Unit = "unit", Ident, ";", "interface", [Uses], {Declarations}, 
+       "implementation", [Uses], Block, ".";
+                
+Uses = "uses", Ident, {",", Ident}, ";";
+
+Block = {Declarations}, (CompoundStatement | "end");
+
+Declarations = Labels | Consts | Types | Vars | ProcFuncs;
+                                    
+Labels = "label", Ident, {",", Ident}, ";";               
+             
+Consts = "const", {UntypedConsts | TypedConsts}-;
+
+UntypedConsts = Ident, "=", ConstExpression, ";";
+                                 
+TypedConsts = Ident, ":", Type, "=", Initializer, ";";
+
+Initializer = ConstExpression | StringLiteral |
+              "(", Initializer, {",", Initializer}, ")" |
+              "(", Ident, ":", Initializer, {";", Ident, ":", Initializer}, ")" |
+              SetConstructor;                     
+
+Types = "type", {Ident, "=", Type, ";"}-;
+
+Vars = "var", {IdentList, ":", Type, ["=", Initializer], ";"}-;
+
+ProcFuncs = ("procedure" | "function"), [?TypeIdent, "."?], Ident, [FormalParams], [":", TypeIdent], 
+            [CallModifier], ";", [(Directive | Block), ";"];
+
+CallModifier = "stdcall" | "cdecl";
+
+Directive = "forward" | "external", ConstExpression;         
+
+ActualParams = "(", [(Expression | Designator), {",", (Expression | Designator)}], ")";
+
+FormalParams = "(", FormalParamList, {";", FormalParamList}, ")";
+              
+FormalParamList = ["const" | "var" | ?"out"?], IdentList, [":", ["array", "of"], TypeIdent], ["=", ConstExpression];             
+
+IdentList = Ident, {",", Ident};
+
+Type = "(", Ident, {",", Ident}, ")" |
+       "^", TypeIdent |
+       ["packed"], "array", "[", Type, {",", Type}, "]", "of", Type |
+       ["packed"], "record", [?"(", TypeIdent, ")"?], Fields, "end" |
+       ["packed"], "interface", [?"(", TypeIdent, {", TypeIdent}, ")"?], {?Prototypes?}, "end" |
+       ["packed"], "set", "of", Type |
+       ["packed"], "string", ["[", ConstExpression, "]"] |
+       ["packed"], "file", ["of", Type] |
+       ConstExpression, "..", ConstExpression |
+       ("procedure" | "function"), [FormalParams], [":", TypeIdent], [CallModifier] |
+       Ident;
+       
+Prototypes = ("procedure" | "function"), Ident, [FormalParams], [":", TypeIdent], ";";
+
+Fields = FixedFields, ["case", [Ident, ":"], Type, "of", CaseField, {";", CaseField}], [";"];       
+ 
+CaseField = CaseLabel, {",", CaseLabel}, ":", "(", Fields, ")";
+
+CaseLabel = ConstExpression, ["..", ConstExpression];
+
+FixedFields = IdentList, ":", Type, {";", IdentList, ":", Type};       
+       
+TypeIdent = "string" | "file" | Ident;       
+
+Designator = (Ident | TypeIdent, "(", Expression, ")"), {Selector};
+
+Selector = "^" | "[", Expression, {",", Expression}, "]" | ".", Ident | ActualParams;
+
+Selector = "^" | "[", Expression, {",", Expression}, "]" | ".", Ident | ActualParams;
+
+Statement = [Ident, ":"], [Designator, [(":="|?"+="?|?"-="?|?"*="?|?"/="?), Expression] | 
+            CompoundStatement | If | Case | While | Repeat | For | Goto | With];                                    
+
+StatementList = Statement, {";", Statement};
+
+CompoundStatement = "begin", StatementList, "end";
+
+If = "if", Expression, "then", Statement, ["else", Statement];
+
+Case = "case", Expression, "of", CaseElement, {";", CaseElement}, [";"], ["else", StatementList], [";"], "end";
+                    
+While = "while", Expression, "do", Statement;
+
+Repeat = "repeat", StatementList, "until", Expression;
+
+For = "for", [?"var"?], Ident, ":=", Expression, ("to" | "downto"), Expression, "do", Statement;
+
+Goto = "goto", Ident;
+
+With = "with", Designator, {",", Designator}, "do", Statement;                    
+ 
+CaseElement = CaseLabel, {",", CaseLabel}, ":", Statement;
+
+ConstExpression = Expression;
+
+Expression = SimpleExpression, [("="|"<>"|"<"|"<="|">"|">="|"in"), SimpleExpression];
+
+SimpleExpression = ["+"|"-"], Term ,{("+"|"-"|"or"|"xor"), Term};
+
+Term = Factor, {("*"|"/"|"div"|"mod"|"shl"|"shr"|"and"), Factor};
+
+Factor = ["@"], Designator | Number | CharLiteral | StringLiteral | 
+         "(", Expression, ")" | "not", Factor | SetConstructor | "nil";
+         
+SetConstructor = "[", [Expression, ["..", Expression], {",", Expression, ["..", Expression]}], "]";         
+
+Ident = (Letter | "_"), {Letter | "_" | Digit};
+
+Number = "$", {HexDigit}- | {Digit}-, [".", {Digit}-], ["e", ["+" | "-"], {Digit}-];
+
+CharLiteral = "'", (Character | "'", "'"), "'" | "#", Number | ?"^", Letter?;
+
+StringLiteral = "'", {Character | "'", "'"}, "'" | ?"#", Number? | ?"^", Letter? | StringLiteral;
+@endebnf
