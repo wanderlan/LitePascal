@@ -5,7 +5,9 @@ title Lite Pascal Grammar
 LitePascal = program | unit | ?Library?;
 
 Program = ["program", Ident, ";"], [UsesClause], Block, ".";
-                
+ 
+Library = ?"library"?, ?Ident?, ?";"?, [?UsesClause?], {?Declarations?}, ?"exports"?, ?IdentList?, ?";"?, (?CompoundStatement? | ?"end"?), ?"."?;
+ 
 Unit = "unit", Ident, ";", "interface", [Uses], {Declarations}, 
        "implementation", [Uses], Block, ".";
                 
@@ -13,7 +15,7 @@ Uses = "uses", Ident, {",", Ident}, ";";
 
 Block = {Declarations}, (CompoundStatement | "end");
 
-Declarations = Labels | Consts | Types | Vars | ProcFuncs;
+Declarations = Labels | Consts | Types | Vars | Procedure | Function;
                                     
 Labels = "label", Ident, {",", Ident}, ";";               
              
@@ -32,12 +34,16 @@ Types = "type", {Ident, "=", Type, ";"}-;
 
 Vars = ("var" | ?"threadvar"?), {IdentList, ":", Type, ["=", Initializer], ";"}-;
 
-ProcFuncs = ("procedure" | "function"), [?TypeIdent, "."?], Ident, [FormalParams], [":", TypeIdent], 
-            [CallModifier], ";", [(Directive | Block), ";"];
+Procedure = "procedure", [?TypeIdent?, ?"."?], Ident, [?Generics?], [FormalParams], [CallModifier], ";", [(Directive | Block | ?"=", SimpleStatement?), ";"];
+
+Function = "function", [?TypeIdent?, ?"."?], Ident, [?Generics?], [FormalParams], ":", TypeIdent, [CallModifier], ";", [(Directive | Block | ?"=", Expression?), ";"];
+
+Generics = ?"<"?, ?TypeIdent?, {?","?, ?TypeIdent?}, ?">"?;
+
 
 CallModifier = "stdcall" | "cdecl";
 
-Directive = "forward" | "external", ConstExpression;         
+Directive = "forward" | "external", ConstExpression | ?"inline"?;
 
 ActualParams = "(", [(Expression | Designator), {",", (Expression | Designator)}], ")";
 
@@ -51,14 +57,14 @@ Type = "(", Ident, {",", Ident}, ")" | "^", TypeIdent |
        ["packed"], "array", "[", Type, {",", Type}, "]", "of", Type |
        ["packed"], "record", [?"(", TypeIdent, ")"?], Fields, "end" |
        "interface", [?"(", TypeIdent, {", TypeIdent}, ")"?], {?Prototypes?}, "end" |
-       ["packed"], "set", "of", Type |
+       ["packed"], "set", "of", TypeIdent |
        ["packed"], "string", ["[", ConstExpression, "]"] |
-       ["packed"], "file", ["of", Type] |
+       ["packed"], "file", ["of", TypeIdent] |
        ConstExpression, "..", ConstExpression |
        ("procedure" | "function"), [FormalParams], [":", TypeIdent], [CallModifier] |
        Ident;
        
-Prototypes = ("procedure" | "function"), Ident, [FormalParams], [":", TypeIdent], ";";
+Prototypes = ("procedure" | "function"), Ident, [?Generics?], [FormalParams], [":", TypeIdent], ";";
 
 Fields = FixedFields, ["case", [Ident, ":"], Type, "of", CaseField, {";", CaseField}], [";"];       
  
@@ -68,16 +74,15 @@ CaseLabel = ConstExpression, ["..", ConstExpression];
 
 FixedFields = IdentList, ":", Type, {";", IdentList, ":", Type};       
        
-TypeIdent = "string" | "file" | Ident;       
+TypeIdent = "string" | "file" | Ident, [?Generics?];       
 
 Designator = (Ident | TypeIdent, "(", Expression, ")"), {Selector};
 
 Selector = "^" | "[", Expression, {",", Expression}, "]" | ".", Ident | ActualParams;
 
-Selector = "^" | "[", Expression, {",", Expression}, "]" | ".", Ident | ActualParams;
+Statement = Ident, ":" | SimpleStatement | CompoundStatement | If | Case | While | Repeat | For | Goto | With;                                    
 
-Statement = [Ident, ":"], [Designator, [(":="|?"+="?|?"-="?|?"*="?|?"/="?), Expression] | 
-            CompoundStatement | If | Case | While | Repeat | For | Goto | With];                                    
+SimpleStatement = Designator, [(":="|?"+="?|?"-="?|?"*="?|?"/="?), Expression];
 
 StatementList = Statement, {";", Statement};
 
@@ -103,7 +108,8 @@ ConstExpression = Expression;
 
 Expression = SimpleExpression, [("="|"<>"|"<"|"<="|">"|">="|"in"|?"is"?|?"as"?), SimpleExpression];
 
-SimpleExpression = ["+"|"-"], Term ,{("+"|"-"|"or"|"xor"), Term};
+SimpleExpression = ["+"|"-"], Term ,{("+"|"-"|"or"|"xor"), Term} | 
+                   ?"if"?, ?Expression?, ?"then"?, ?Expression?, ?"else"?, ?Expression?;
 
 Term = Factor, {("*"|"/"|"div"|"mod"|"shl"|"shr"|"and"), Factor};
 
