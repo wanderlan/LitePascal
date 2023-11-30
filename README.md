@@ -10,6 +10,7 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - Revised String type implementation
 - Multi-line strings
 - Case statements with any type and interface type
+- Unit initialization
 - PR with these contributions for XD-Pascal project
 ### Beta 2
 - Lite error handling
