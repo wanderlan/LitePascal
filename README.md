@@ -4,11 +4,12 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 
 ## Roadmap  
 ### Beta 1  
-- Lite OOP (Golang semantic) using Delphi/FPC syntax
-- Fluent notation
+- Lite OOP (Golang semantic) using simplified Pascal syntax
+- Fluent interface notation
 - Implicit overload
 - Revised String type implementation
 - Multi-line strings
+- Strings with char codes
 - Case statements with any type and interface type
 - Unit initialization
 - PR with these contributions for XD-Pascal project
@@ -17,6 +18,7 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - Embedded length for open array parameters
 - Low and High functions for open arrays
 - Conditional compilation
+- Include files
 - Macros
 - Lite generics
 - Inline procedures/functions
