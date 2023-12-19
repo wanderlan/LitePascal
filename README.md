@@ -5,7 +5,7 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 ## Roadmap  
 ### Beta 1  
 - Lite OOP (Golang semantic) using simplified Pascal syntax
-- Fluent interface notation
+- Fluent interface pattern
 - Implicit overload
 - Revised String type implementation
 - Multi-line strings
