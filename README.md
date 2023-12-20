@@ -26,7 +26,8 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - PR with these contributions for XD-Pascal project
 ### Beta 3
 - More FPC/Delphi compatibility
-- Even smaller minimal executables 
+- Even smaller minimal executables
+- Library using unit syntax
 - Library (dll/so) building
 ### Release 1
 - x64_windows target
