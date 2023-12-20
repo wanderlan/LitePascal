@@ -2,11 +2,9 @@
 title Lite Pascal Grammar 
 (*Future implementations are in dashed blocks*)
 
-LitePascal = program | unit | ?Library?;
+LitePascal = program | unit;
 
 Program = ["program", Ident, ";"], [UsesClause], Block, ".";
- 
-Library = ?"library"?, ?Ident?, ?";"?, [?UsesClause?], {?Declarations?}, ?"exports"?, ?IdentList?, ?";"?, (?CompoundStatement? | ?"end"?), ?"."?;
  
 Unit = "unit", Ident, ";", "interface", [Uses], {Declarations}, 
        "implementation", [Uses], Block, ".";
@@ -32,31 +30,31 @@ Initializer = ConstExpression | StringLiteral |
 
 Types = "type", {Ident, "=", Type, ";"}-;
 
-Vars = ("var" | ?"threadvar"?), {IdentList, ":", Type, ["=", Initializer], ";"}-;
+Vars = ("var" | ?threadvar?), {IdentList, ":", Type, ["=", Initializer], ";"}-;
 
-Procedure = "procedure", [?TypeIdent?, ?"."?], Ident, [?Generics?], [FormalParams], [CallModifier], ";", [(Directive | Block | ?"=", SimpleStatement?), ";"];
+Procedure = "procedure", [?TypeIdent?, ?.?], Ident, [?Generics?], [FormalParams], [CallModifier], (";", (Directive | Block) | ?=, SimpleStatement?), ";";
 
-Function = "function", [?TypeIdent?, ?"."?], Ident, [?Generics?], [FormalParams], ":", TypeIdent, [CallModifier], ";", [(Directive | Block | ?"=", Expression?), ";"];
+Function = "function", [?TypeIdent?, ?.?], Ident, [?Generics?], [FormalParams], ":", TypeIdent, [CallModifier], (";", (Directive | Block) | ?=, Expression?), ";";
 
-Generics = ?"<"?, ?TypeIdent?, {?","?, ?TypeIdent?}, ?">"?;
+Generics = ?<?, ?TypeIdent?, {?,?, ?TypeIdent?}, ?>?;
 
 
 CallModifier = "stdcall" | "cdecl";
 
-Directive = "forward" | "external", ConstExpression | ?"inline"?;
+Directive = "forward" | "external", ConstExpression | ?inline?;
 
 ActualParams = "(", [(Expression | Designator), {",", (Expression | Designator)}], ")";
 
 FormalParams = "(", FormalParamList, {";", FormalParamList}, ")";
               
-FormalParamList = ["const" | "var" | ?"out"?], IdentList, [":", ["array", "of"], TypeIdent], ["=", ConstExpression];             
+FormalParamList = ["const" | "var" | ?out?], IdentList, [":", ["array", "of"], TypeIdent], ["=", ConstExpression];             
 
 IdentList = Ident, {",", Ident};
 
 Type = "(", Ident, {",", Ident}, ")" | "^", TypeIdent |
        ["packed"], "array", "[", Type, {",", Type}, "]", "of", Type |
-       ["packed"], "record", [?"(", TypeIdent, ")"?], Fields, "end" |
-       "interface", [?"(", TypeIdent, {", TypeIdent}, ")"?], {?Prototypes?}, "end" |
+       ["packed"], "record", [?(?, ?TypeIdent?, ?)?], Fields, "end" |
+       "interface", [?(?, ?TypeIdent?, {?,?, ?TypeIdent?}, ?)?], {?Prototypes?}, "end" |
        ["packed"], "set", "of", TypeIdent |
        ["packed"], "string", ["[", ConstExpression, "]"] |
        ["packed"], "file", ["of", TypeIdent] |
@@ -82,7 +80,7 @@ Selector = "^" | "[", Expression, {",", Expression}, "]" | ".", Ident | ActualPa
 
 Statement = Ident, ":" | SimpleStatement | CompoundStatement | If | Case | While | Repeat | For | Goto | With;                                    
 
-SimpleStatement = Designator, [(":="|?"+="?|?"-="?|?"*="?|?"/="?), Expression];
+SimpleStatement = Designator, [(":="|?+=?|?-=?|?*=?|?/=?), Expression];
 
 StatementList = Statement, {";", Statement};
 
@@ -96,7 +94,7 @@ While = "while", Expression, "do", Statement;
 
 Repeat = "repeat", StatementList, "until", Expression;
 
-For = "for", [?"var"?], Ident, ":=", Expression, ("to" | "downto"), Expression, "do", Statement;
+For = "for", [?var?], Ident, ":=", Expression, ("to" | "downto"), Expression, "do", Statement;
 
 Goto = "goto", Ident;
 
@@ -122,9 +120,9 @@ Ident = (Letter | "_"), {Letter | "_" | Digit};
 
 Number = "$", {HexDigit}- | {Digit}-, [".", {Digit}-], ["e", ["+" | "-"], {Digit}-];
 
-CharLiteral = "'", (Character | "'", "'"), "'" | "#", Number | ?"^", Letter?;
+CharLiteral = "'", (Character | "'", "'"), "'" | "#", Number;
 
-StringLiteral = "'", {Character | "'", "'"}, "'" | ?"#", Number? | ?"^", Letter? | StringLiteral;
+StringLiteral = {"'", {Character | "'", "'"}, "'" | "#", Number}-;
 <style>
  element {
    ebnf {
