@@ -45,5 +45,3 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - HTMX, HyperScript and Hyperview support
 - SQLite support
 - Very simple IDE (LiteIDE) in LitePascal, HTMX, HyperScript and CodeMirror
-
-![LitePascal](https://github.com/wanderlan/LitePascal/blob/main/docs/grammar.svg)
