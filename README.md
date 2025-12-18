@@ -21,7 +21,7 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - Include files
 - Macros
 - Lite generics
-- Inline procedures/functions
+- Low level access (based on Active Oberon)
 - Short procedures/functions
 - PR with these contributions for XD-Pascal project
 ### Beta 3
@@ -39,7 +39,7 @@ This code is based on brilliant [XD-Pascal](https://github.com/vtereshkov/xdpw) 
 - SIMD support
 - Benchmarks game samples
 ### Release 5
-- coroutines support (based on goroutines)
+- concurrency support (based on Active Oberon)
 - LiteHTTP server (based on miniHttp(Rust) server)
 ### Release 4
 - HTMX, HyperScript and Hyperview support
